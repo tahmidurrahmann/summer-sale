@@ -9,20 +9,26 @@ function calculationSummerClick(btn){
     const amount = parseFloat(btn.childNodes[3].childNodes[5].innerText.split(' ')[0]);
     sum = parseFloat(sum) + parseFloat(amount);
     const firstTotal = (document.getElementById('total-price').innerText) = sum;
-    const totalDiscount = document.getElementById('total-discount');
-    const paymentTotal = document.getElementById('payment-total');
-    const remain = firstTotal* 0.8;
-    const discount = firstTotal * 0.2;
-    if(firstTotal > 200){
-        totalDiscount.innerText = discount.toFixed(2);
-        paymentTotal.innerText = remain.toFixed(2);
+    const makePurchase = document.getElementById('make-purchase');
+    if(sum > 1){
+        makePurchase.removeAttribute('disabled')
     }
-}
-
-function applyBtn(){
-    const inputCoupon = parseFloat(document.getElementById('input-coupon').value);
-    const discount = firstTotal * 0.2;
-    if(inputCoupon === 'SELL200'){
-
+    else{
+        makePurchase.setAttribute('disabled', 'true')
+    }
+    const inputCoupon = document.getElementById('input-coupon');
+    const inputCouponString = inputCoupon.value;
+    const paymentTotal = document.getElementById('payment-total');
+    const discount = sum * 0.2;
+    const remain = sum * 0.8;
+    const totalDiscount = document.getElementById('total-discount');
+    const applyBtn = document.getElementById('apply-btn');
+    if(sum >= 200 && inputCouponString === 'SUM200'){
+        applyBtn.removeAttribute('disabled');
+        totalDiscount.innerText = discount;
+        paymentTotal.innerText = remain;
+    }
+    else{
+        applyBtn.setAttribute('disabled', 'true')
     }
 }
