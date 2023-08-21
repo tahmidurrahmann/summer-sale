@@ -36,6 +36,5 @@ function calculationSummerClick(btn){
     else{
         makePurchase.setAttribute('disabled', 'true')
     }
-   
 
 }
