@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Cards with Total Sum and Buttons</title>
+<style>
+  .card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="card" onclick="handleCardClick(39)">
+  <h3>Card 1</h3>
+  <p>Value: $39.00</p>
+</div>
+<div class="card" onclick="handleCardClick(49)">
+  <h3>Card 2</h3>
+  <p>Value: $49.00</p>
+</div>
+<div class="card" onclick="handleCardClick(59)">
+  <h3>Card 3</h3>
+  <p>Value: $59.00</p>
+</div>
+<div class="card" onclick="handleCardClick(149)">
+  <h3>Card 4</h3>
+  <p>Value: $149.00</p>
+</div>
+<div class="card" onclick="handleCardClick(69)">
+  <h3>Card 5</h3>
+  <p>Value: $69.00</p>
+</div>
+<div class="card" onclick="handleCardClick(59)">
+  <h3>Card 6</h3>
+  <p>Value: $59.00</p>
+</div>
+
+<p>Total Sum: <span id="totalSum">0.00</span></p>
+
+<div>
+  <button id="enableButton" onclick="handleEnableButtonClick()" disabled>Enable Button</button>
+  <button id="discountButton" onclick="handleDiscountButtonClick()" disabled>Apply 20% Discount</button>
+  <input type="text" id="discountInput" placeholder="Enter code">
+</div>
+
+<p>Discounted Amount: $<span id="discountedAmount">0.00</span></p>
+<p>Total Amount: $<span id="totalAmount">0.00</span></p>
+
+<script>
+  let selectedCards = [];
+  
+  function handleCardClick(value) {
+    const index = selectedCards.indexOf(value);
+    if (index === -1) {
+      selectedCards.push(value);
+    } else {
+      selectedCards.splice(index, 1);
+    }
+
+    updateTotalSum();
+    updateButtonState();
+  }
+
+  function updateTotalSum() {
+    const totalSumElement = document.getElementById('totalSum');
+    let sum = 0;
+    for (let i = 0; i < selectedCards.length; i++) {
+      sum += selectedCards[i];
+    }
+    totalSumElement.textContent = sum.toFixed(2);
+  }
+
+  function updateButtonState() {
+    let totalSum = 0;
+    for (let i = 0; i < selectedCards.length; i++) {
+      totalSum += selectedCards[i];
+    }
+
+    const enableButton = document.getElementById('enableButton');
+    enableButton.disabled = totalSum <= 1;
+
+    const discountButton = document.getElementById('discountButton');
+    discountButton.disabled = totalSum <= 200;
+  }
+
+  function handleEnableButtonClick() {
+    alert('Enable Button clicked!');
+  }
+
+  function handleDiscountButtonClick() {
+    const discountInput = document.getElementById('discountInput');
+    if (discountInput.value.toLowerCase() === 'sum200') {
+      applyDiscount();
+    }
+  }
+
+  function applyDiscount() {
+    let totalSum = 0;
+    for (let i = 0; i < selectedCards.length; i++) {
+      totalSum += selectedCards[i];
+    }
+    const discount = totalSum * 0.2; // 20% discount
+    const discountedAmountElement = document.getElementById('discountedAmount');
+    discountedAmountElement.textContent = discount.toFixed(2);
+
+    const totalAmountElement = document.getElementById('totalAmount');
+    totalAmountElement.textContent = (totalSum - discount).toFixed(2);
+  }
+</script>
+</body>
+</html>

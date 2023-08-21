@@ -43,9 +43,9 @@
     <main class="bg-[#F8F8F8]">
         <section class="max-w-screen-xl mx-auto pt-8 lg:pt-20 ">
               <div class="flex flex-col md:flex-row">
-                <div class="w-3/4">
+                <div class="w-full md:w-3/4">
                   <h1 class="text-[#111] font-semibold text-3xl text-center lg:text-start lg:pl-10">Kitchenware</h1>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-10">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 p-10">
                   <div onclick="calculationSummerClick(this)" class="card bg-base-100 shadow-xl">
                       <figure class="mx-5 mt-5 py-5 bg-[#F8F8F8]">
                         <img src="./images/prod1.png" alt="Shoes" class="rounded-xl" />
@@ -95,7 +95,7 @@
                           </svg>
                         </div>
                         <h3 class="text-[#111] font-semibold text-lg">K. Accessories</h3>
-                        <p class="text-lg text-[#11111180]"><span>25.00</span> TK</p>
+                        <p class="text-lg text-[#11111180]">25.00 TK</p>
                       </div>
                     </div>
                   <div onclick="calculationSummerClick(this)" class="card bg-base-100 shadow-xl">
@@ -128,7 +128,7 @@
               </div>
 
             <h1 class="text-[#111] font-semibold text-3xl text-center lg:text-start lg:pl-10">Sportswear</h1>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-10">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 p-10">
                 <div onclick="calculationSummerClick(this)" class="card bg-base-100 shadow-xl">
                     <figure class="mx-5 mt-5 py-5 bg-[#F8F8F8]">
                       <img src="./images/prod4.png" alt="Shoes" class="rounded-xl" />
@@ -209,12 +209,12 @@
                   </div>
             </div>
                 </div>
-            <div class="flex flex-col gap-6 mt-20">
+            <div class="flex flex-col gap-6 mt-20 p-10 md:pr-5 lg:p-0 lg:pr-0">
               <div class="bg-white rounded-lg px-4 py-3">
                   <h1 class="text-[#111] font-medium text-lg md:text-2xl">Have coupon?</h1>
                   <div class="flex">
-                    <input class="p-2 border rounded-lg w-3/4" type="text" placeholder="Coupon code">
-                <button class="text-white font-semibold text-lg rounded-lg bg-[#E527B2] hover:bg-pink-500 w-1/2" disabled>Apply</button>
+                    <input id="input-coupon" class="p-2 border rounded-lg w-3/4" type="text" placeholder="Coupon code">
+                <button onclick="applyBtn()" id="apply-btn" class="text-white font-semibold text-lg rounded-lg bg-[#E527B2] w-1/2" disabled style="background-color:rgba(0,0,0,0.4)">Apply</button>
                   </div>
                 </div>
             <div class="bg-white rounded-lg">
@@ -223,11 +223,11 @@
                 <!-- append there -->
               </div>
               <hr>
-              <p class="text-lg md:text-2xl font-medium text-[#111]">Total price: <span id="total-price" class="text-[#11111180]">0.00</span><span class="text-[#11111180]">Tk</span></p>
+              <p class="text-lg md:text-2xl font-medium text-[#111]">Total price: <span id="total-price" class="text-[#11111180]">0.00</span><span class="text-[#11111180]">Tk</span> </p>
               <p class="text-lg md:text-2xl font-medium text-[#111]">Discount: <span id="total-discount" class="text-[#11111180]">0.00</span><span class="text-[#11111180]">Tk</span></p>
               <p class="text-lg md:text-2xl font-medium text-[#111]">Total: <span id="payment-total" class="text-[#11111180]">0.00</span><span class="text-[#11111180]">Tk</span></p>
               <hr>
-              <button id="purchase-btn" class="bg-[#E527B2] hover:bg-pink-500 font-semibold text-white text-lg rounded-lg py-4 w-full" disabled>Make Purchase</button>
+              <button onclick="purchaseBtn()" id="purchase-btn" class="bg-[#E527B2] font-semibold text-white text-lg rounded-lg py-4 w-full" >Make Purchase</button>
              </div>
             </div>
           </div>
