@@ -19,17 +19,16 @@ function calculationSummerClick(btn){
     const totalDiscount = document.getElementById('total-discount');
     const remain = sum * 0.8;
     const discount = sum * 0.2;
-    const applyBtn = document.getElementById('apply-btn').addEventListener('click',function(){
+    const applyBtn = document.getElementById('apply-btn');
         if(sum > 200 && inputCouponString === 'SUM200'){
             applyBtn.removeAttribute('disabled');
             
-            totalDiscount.innerText = discount;
-            paymentTotal.innerText = remain;
+            totalDiscount.innerText = discount.toFixed(2);
+            paymentTotal.innerText = remain.toFixed(2);
            }
         else{
         applyBtn.setAttribute('disabled', 'true')
     }
-})
     if(sum > 1){
         makePurchase.removeAttribute('disabled');
     }
