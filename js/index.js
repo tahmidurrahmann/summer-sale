@@ -10,30 +10,42 @@ function calculationSummerClick(btn){
     sum = parseFloat(sum) + parseFloat(amount);
     const totalPrice = document.getElementById('total-price')
     const firstTotal = (document.getElementById('total-price').innerText) = sum;
+
     const makePurchase = document.getElementById('make-purchase');
-    
-    
-    const inputCoupon = document.getElementById('input-coupon');
-    const inputCouponString = inputCoupon.value;
-    const paymentTotal = document.getElementById('payment-total');
-    const totalDiscount = document.getElementById('total-discount');
-    const remain = sum * 0.8;
-    const discount = sum * 0.2;
-    const applyBtn = document.getElementById('apply-btn');
-        if(sum > 200 && inputCouponString === 'SUM200'){
-            applyBtn.removeAttribute('disabled');
-            
-            totalDiscount.innerText = discount.toFixed(2);
-            paymentTotal.innerText = remain.toFixed(2);
-           }
-        else{
-        applyBtn.setAttribute('disabled', 'true')
-    }
-    if(sum > 1){
+    if(sum > 0){
         makePurchase.removeAttribute('disabled');
     }
     else{
         makePurchase.setAttribute('disabled', 'true')
     }
-
+    const applyBtn = document.getElementById('apply-btn');
+        if(sum > 200 ){
+            applyBtn.removeAttribute('disabled');
+        }
+        else{
+        applyBtn.setAttribute('disabled', 'true');
+    }
 }
+function applyBtn(){
+    const total = document.getElementById('total-price').innerText;
+    const discountTotal = document.getElementById('total-discount');
+    const discount = total * .2;
+    const paymentTotal = document.getElementById('payment-total');
+    const remain = total * .8;
+    const inputCoupon = document.getElementById('input-coupon').value;
+    if(total >= 200 && inputCoupon === "SELL200"){
+        discountTotal.innerText = discount.toFixed(2);
+        paymentTotal.innerText = remain.toFixed(2);
+    }
+}
+document.getElementById('goHome').addEventListener('click',function(){
+    document.getElementById('append-container').innerText = '';
+    document.getElementById('total-price').innerText = '00';
+    document.getElementById('total-discount').innerText = '00';
+    document.getElementById('payment-total').innerText = '00';
+    document.getElementById('input-coupon').value = '';
+    const applyBtn = document.getElementById('apply-btn');
+    applyBtn.setAttribute('disabled','true');
+    const makePurchase = document.getElementById('make-purchase');
+    makePurchase.setAttribute('disabled','true')
+});
